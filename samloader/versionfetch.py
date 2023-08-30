@@ -19,7 +19,7 @@ def getlatestver(model: str, region: str) -> str:
     """ Get the latest firmware version code for a model and region. """
     request_headers = {'User-Agent': 'curl/7.81.0'}
     req = requests.get("https://fota-cloud-dn.ospserver.net/firmware/" \
-        + region + "/" + model + "/version.xml", headers=request_headers)
+        + region + "/" + model + "/version.xml", headers=request_headers, verify=False)
     if req.status_code == 403:
         raise Exception("Model or region not found (403)")
     req.raise_for_status()
